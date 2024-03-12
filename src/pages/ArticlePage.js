@@ -1,12 +1,13 @@
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import articles from "../articles";
+import NotFoundPage from "./NotFoundPage";
 
 
 const ArticlePage = () => {
     const {articleId} = useParams();
     const article = articles.find((article) => article.name === articleId);
     if (!article) {
-        return <Navigate to="/404"/>
+        return <NotFoundPage/>
     }
     return (
         <>
