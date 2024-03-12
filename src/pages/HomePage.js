@@ -1,6 +1,4 @@
-const HomePage = () => {
-    return (
-        <h1>This is the Home page!</h1>
-    )
-}
+const HomePage = () => (
+    <h1>This is the Home page!</h1>
+)
 export default HomePage;
