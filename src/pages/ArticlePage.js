@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
 import {useState, useEffect} from "react";
 import axios from "axios";
+import CommentsList from "../components/CommentsList";
 
 
 const ArticlePage = () => {
@@ -27,6 +28,7 @@ const ArticlePage = () => {
             <h1>{articleInfo.title}</h1>
             <p>This article has {articleInfo.upvotes} upvote(s)</p>
             {articleInfo.content.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
+            <CommentsList comments={articleInfo.comments}/>
         </>
     )
 }
