@@ -58,7 +58,7 @@ nav a, nav a:visited {
     padding: 24px 32px;
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
     background: black;
     color: white;
 }
