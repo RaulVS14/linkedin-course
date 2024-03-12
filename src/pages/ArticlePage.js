@@ -8,11 +8,10 @@ const ArticlePage = () => {
     if (!article) {
         return <Navigate to="/404"/>
     }
-    console.log(article);
     return (
         <>
             <h1>{article.title}</h1>
-            {article.content.map(paragraph => <p>{paragraph}</p>)}
+            {article.content.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
         </>
     )
 }
