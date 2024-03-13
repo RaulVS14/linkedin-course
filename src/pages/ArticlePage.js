@@ -1,14 +1,16 @@
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import CommentsList from "../components/CommentsList";
 import AddCommentForm from "../components/AddCommentForm";
+import useUser from "../hooks/useUser";
 
 
 const ArticlePage = () => {
     const [articleInfo, setArticleInfo] = useState({});
     const {articleId} = useParams();
+    const {user, isLoading} = useUser();
     useEffect(() => {
         const loadArticleInfo = async () => {
             const response = await axios.get(`/api/articles/${articleId}`).catch((err) => console.log(err));
@@ -36,11 +38,21 @@ const ArticlePage = () => {
         <>
             <h1>{articleInfo.title}</h1>
             <div className="upvote-section">
-                <button onClick={addUpVote}>Upvote</button>
+                {
+                    user ?
+                        <button onClick={addUpVote}>Upvote</button>
+                        :
+                        <Link to="/login">Log in to up vote</Link>
+                }
                 <p>This article has {articleInfo.upvotes} upvote(s)</p>
             </div>
             {articleInfo.content.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
-            <AddCommentForm articleId={articleId} onArticleUpdated={onArticleUpdated}/>
+            {
+                user ?
+                    <AddCommentForm articleId={articleId} onArticleUpdated={onArticleUpdated}/>
+                    :
+                    <Link to="/login">Log in to comment</Link>
+            }
             <CommentsList comments={articleInfo.comments.slice().reverse()}/>
         </>
     );
