@@ -22,7 +22,9 @@ const articles = [
             sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
             interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
             consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
-        ]
+        ],
+        comments:[],
+        upvotes: 0
     }, {
         name: 'learn-node',
         title: 'How to Build a Node Server in 10 Minutes',
@@ -46,7 +48,9 @@ const articles = [
             sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
             interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
             consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
-        ]
+        ],
+        comments:[],
+        upvotes: 0
     }, {
         name: 'mongodb',
         title: 'Learn MongoDB',
@@ -70,7 +74,9 @@ const articles = [
             sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
             interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
             consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
-        ]
+        ],
+        comments:[],
+        upvotes: 0
     },
 ];
 

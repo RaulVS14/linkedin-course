@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .\\src\\server.js -p 8000",
-    "dev": "nodemon .\\src\\server.js --port 8000"
+    "start_win": "node .\\src\\server.js -p 8000",
+    "dev_win": "nodemon .\\src\\server.js --port 8000",
+    "dev":  "npx nodemon src/server.js --port 8000",
+    "start":  "node src/server.js --port 8000"
   },
   "keywords": [],
   "author": "",
