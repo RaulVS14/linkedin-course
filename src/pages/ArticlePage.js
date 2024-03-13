@@ -3,6 +3,7 @@ import NotFoundPage from "./NotFoundPage";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import CommentsList from "../components/CommentsList";
+import AddCommentForm from "../components/AddCommentForm";
 
 
 const ArticlePage = () => {
@@ -12,7 +13,6 @@ const ArticlePage = () => {
         const loadArticleInfo = async () => {
             const response = await axios.get(`/api/articles/${articleId}`).catch((err) => console.log(err));
             const articleInfo = response?.data;
-            console.log(articleInfo);
             setArticleInfo(articleInfo);
         }
         loadArticleInfo();
@@ -20,7 +20,11 @@ const ArticlePage = () => {
     const addUpVote = async () => {
         const response = await axios.put(`/api/articles/${articleId}/upvote`);
         const updateArticle = response.data;
+
         setArticleInfo(updateArticle);
+    }
+    const onArticleUpdated = (articleInfo)=>{
+        setArticleInfo(articleInfo);
     }
     if (!articleInfo) {
         return <NotFoundPage/>
@@ -36,8 +40,9 @@ const ArticlePage = () => {
                 <p>This article has {articleInfo.upvotes} upvote(s)</p>
             </div>
             {articleInfo.content.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
-            <CommentsList comments={articleInfo.comments}/>
+            <AddCommentForm articleId={articleId} onArticleUpdated={onArticleUpdated}/>
+            <CommentsList comments={articleInfo.comments.slice().reverse()}/>
         </>
-    )
+    );
 }
 export default ArticlePage;
