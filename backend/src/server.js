@@ -46,7 +46,7 @@ app.use((req, res, next) => {
     if (req?.user) {
         next();
     } else {
-        res.send(401);
+        res.sendStatus(401);
     }
 })
 app.put('/api/articles/:name/upvote', async (req, res) => {
@@ -54,7 +54,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
     const {uid} = req.user;
     const article = await db.collection('articles').findOne({name});
     if (!article) {
-        res.send(403);
+        res.sendStatus(403);
     }
     const upVoteIds = article.upvoteIds || [];
     const canUpVote = uid && !upVoteIds.includes(uid);
@@ -74,7 +74,7 @@ app.post('/api/articles/:name/comments', async (req, res) => {
 
     const article = await db.collection('articles').findOne({name});
     if (!article) {
-        res.send(403);
+        res.sendStatus(403);
     }
     await db.collection('articles').updateOne({name}, {
         $push: {comments: {postedBy:email, text}}
